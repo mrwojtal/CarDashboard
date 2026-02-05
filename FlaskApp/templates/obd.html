@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Mini R50 Web Panel</title>
+{% endblock %}
+
+{% block body %}
+    <div id="other_parameters">
+        <h2 class="obd_header">OBD parameters</h2>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Parameter</td>
+                    <th>Value</td>
+                    <th>Unit</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>OBD Compliance</td>
+                    <td id="obd_comp_val"></td>
+                    <td>N/A</td>
+                </tr>
+                <tr>
+                    <td>ECU Voltage</td>
+                    <td id="elm_voltage_val"></td>
+                    <td>V</td>
+                </tr>
+                <tr>
+                    <td>Distance with MIL</td>
+                    <td id="dist_mil_val"></td>
+                    <td>km</td>
+                </tr>
+                <tr>
+                    <td>Coolant Temperature</td>
+                    <td id="coolant_temp_val"></td>
+                    <td>&deg;C</td>
+                </tr>
+                <tr>
+                    <td>Intake Air Temperature</td>
+                    <td id="intake_air_temp_val"></td>
+                    <td>&deg;C</td>
+                </tr>
+                <tr>
+                    <td>Air Flow Rate (MAF)</td>
+                    <td id="maf_val"></td>
+                    <td>g/s</td>
+                </tr>
+                <tr>
+                    <td>Enginge Load</td>
+                    <td id="engine_load_val"></td>
+                    <td>%</td>
+                </tr>
+                <tr>
+                    <td>Vehicle Speed</td>
+                    <td id="veh_speed_val"></td>
+                    <td>km/h</td>
+                </tr>
+                <tr>
+                    <td>Vehicle RPM</td>
+                    <td id="veh_rpm_val"></td>
+                    <td>RPM</td>
+                </tr>
+                <tr>
+                    <td>Intake Pressure</td>
+                    <td id="intake_pressure_val"></td>
+                    <td>kPa</td>
+                </tr>
+                <tr>
+                    <td>Fuel Rail Pressure</td>
+                    <td id="fuel_rail_pressure_val"></td>
+                    <td>kPa</td>
+                </tr>
+            </tbody>
+        </table>
+	</div>
+    <hr>
+    <div>
+        <h2>Tachometer control</h2>
+        <a href=\control><button class="btn btn-control">Control</button></a>
+    </div>
+    <div>
+        <h2>Main</h2>
+        <a href=\><button class="btn btn-ret">Return</button></a>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script type="text/javascript">
+        /*function used to update OBD parameters on website*/
+        setInterval(function sendGETOBD() {
+                $.ajax({
+                type: "GET",
+                url: "{{ url_for('obd_parameters')}}",
+                data: {"parameter" : "OBD_Compliance",
+                       "parameter" : "ELM_Voltage",
+                       "parameter" : "Distance_With_MIL",
+                       "parameter" : "Coolant_Temperature",
+                       "parameter" : "Intake_Air_Temperature",
+                       "parameter" : "MAF",
+                       "parameter" : "Engine_Load",
+                       "parameter" : "Vehicle_Speed",
+                       "parameter" : "Vehicle_RPM",
+                       "parameter" : "Intake_Pressure",
+                       "parameter" : "Fuel_Rail_Pressure"
+                       },
+                contentType: "application/json",
+                success: function(response) {
+                    console.log(response);
+                    document.getElementById("obd_comp_val").innerText = response.obdComplianceValue;
+                    document.getElementById("elm_voltage_val").innerText = response.elmVoltageValue;
+                    document.getElementById("dist_mil_val").innerText = response.distanceWithMILValue;
+                    document.getElementById("coolant_temp_val").innerText = response.coolantTemperatureValue;
+                    document.getElementById("intake_air_temp_val").innerText = response.intakeAirTemperatureValue;
+                    document.getElementById("maf_val").innerText = response.mafValue;
+                    document.getElementById("engine_load_val").innerText = response.engineLoadValue;
+                    document.getElementById("veh_speed_val").innerText = response.vehicleSpeedValue;
+                    document.getElementById("veh_rpm_val").innerText = response.vehicleRPMValue;  
+                    document.getElementById("intake_pressure_val").innerText = response.intakePressureValue;
+                    document.getElementById("fuel_rail_pressure_val").innerText = response.fuelRailPressureValue;                
+                }
+            });
+        }, 3000);
+    </script>
+{% endblock %}

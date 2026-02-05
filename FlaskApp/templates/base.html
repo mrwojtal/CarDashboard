@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}{% endblock %}
+    <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+    <link rel="icon" type="image/x-icon" href="{{url_for('static', filename='favicon_io/favicon.ico')}}">
+</head>
+<body>
+    {% block body %}{% endblock %}
+    <hr>
+    <footer>
+        <p class="credentials">Author: Krzysztof Wojtal </p>
+        <p>
+            <a href="https://github.com/mrwojtal" target="_blank"><img src="{{url_for('static', filename='images/githubLogotype.png')}}" width="55" height="55" alt="GitHub"></a>
+            <a href="https://www.linkedin.com/in/krzysztof-wojtal-ba41392a0/" target="_blank"><img src="{{url_for('static', filename='images/linkedinLogotype.png')}}" width="55" height="55" alt="Linkedin"></a>
+        </p>
+        <p class="credentials">AGH University of Science and Technology</p>
+        <p>
+           <a href="https://www.agh.edu.pl/" target="_blank"><img src="{{url_for('static', filename='images/aghLogotype.png')}}" width="55" height="55" alt="AGH"></a>
+           <a href="https://iet.agh.edu.pl/" target="_blank"><img src="{{url_for('static', filename='images/eitLogotype.png')}}" width="55" height="55" alt="WiEiT"></a>
+        </p>
+    </footer>
+</body>
+</html>

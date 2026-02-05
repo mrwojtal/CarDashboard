@@ -1,0 +1,236 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Mini R50 Control Panel</title>
+    
+{% endblock %}
+
+{% block body %}
+    <h1>Mini R50 Control Panel</h1>
+    <hr>
+	<div class="row">
+		<div class="column">
+			<div id="cntrl_sctn">
+                <h2>Car communication script control</h2>
+                <div class="container">
+                    <div class="run_container">
+                        <a href=run_script><button class="btn run_btn">Run Script</button></a>
+                    </div>
+                    <div class="stop_container">
+                        <a href=stop_script><button class="btn stop_btn">Stop Script</button></a>
+                    </div>
+                </div>
+				<h2>Control Section</h2>
+				<div class="container">
+					<p class="std_paragraph" id="p_par">Parameter</p>
+					<p class="std_paragraph">Value</p>
+					<p class="std_paragraph">Unit</p>
+				</div>
+				<hr>
+				<div class="container">
+					<a href=\trip><button class="btn btn-trip">Trip</button></a>
+					{% if tripValue %}
+					<p class="std_paragraph" id="tripAvailable"> {{ tripValue }} </p>
+					{% else %}
+					<p class="std_paragraph"> N/A </p>
+					{% endif %}
+					<p class="std_paragraph">km</p>
+				</div>
+				<br>
+				<div class="container">
+					<a href=\speed><button class="btn btn-speed">Speed</button></a>
+					{% if speedValue %}
+					<p class="std_paragraph" id="speedAvailable"> {{ speedValue }} </p>
+					{% else %}
+					<p class="std_paragraph"> N/A </p>
+					{% endif %}
+					<p class="std_paragraph">km/h</p>
+				</div>
+				<br>
+				<div class="container">
+					<a href=\temperature><button class="btn btn-temp">Temperature</button></a>
+					{% if tempValue %}
+					<p class="std_paragraph" id="tempAvailable"> {{ tempValue }} </p>
+					{% else %}
+					<p class="std_paragraph"> N/A </p>
+					{% endif %}
+					<p class="std_paragraph">&deg;C</p>
+				</div>
+				<br>
+				<div class="container">
+					<a href=\range><button class="btn btn-range">Range</button></a>
+					{% if rangeValue %}
+					<p class="std_paragraph" id="rangeAvailable"> {{ rangeValue }} </p>
+					{% else %}
+					<p class="std_paragraph"> N/A </p>
+					{% endif %}
+					<p class="std_paragraph">km</p>
+				</div>
+				<br>
+				<div class="container">
+					<a href=\consumption><button class="btn btn-cons">Consumption</button></a>
+					{% if consValue %}
+					<p class="std_paragraph" id="consAvailable"> {{ consValue }} </p>
+					{% else %}
+					<p class="std_paragraph"> N/A </p>
+					{% endif %}
+					<p class="std_paragraph">L/100km</p>
+				</div>
+			</div>
+		</div>
+		<div class="column">
+            <h2 class="tacho_desc">Visualization of Tachometer</h2>
+			<div class="tachometer-container">
+				<div class="center-point"></div>
+				<div class="center-point-2"></div>
+				<div class="tachometer-center-hide"></div>
+				<div class="tachometer-bottom-hide-left"></div>
+				<div class="tachometer-bottom-hide-right"></div>
+				<div class="lcd">
+					<div class="dynamic" id="dynamic_lcd"> {{ rpmValue }}</div>
+					<div class="static" >RPM</div>
+				</div>
+				<div class="arrow-container">
+					<div class="arrow-wrapper arrow-speed-0">
+						<div class="arrow"></div>
+					</div>
+				</div>
+				<div class="tachometer-scale tachometer-scale-1 active"></div>
+				<div class="tachometer-scale tachometer-scale-2"></div>
+				<div class="tachometer-scale tachometer-scale-3"></div>
+				<div class="tachometer-scale tachometer-scale-4"></div>
+				<div class="tachometer-scale tachometer-scale-5"></div>
+				<div class="tachometer-scale tachometer-scale-6"></div>
+				<div class="tachometer-scale tachometer-scale-7"></div>
+				<div class="tachometer-scale tachometer-scale-8"></div>
+				<div class="tachometer-scale tachometer-scale-9"></div>
+				<div class="tachometer-scale tachometer-scale-10"></div>
+				<div class="tachometer-scale tachometer-scale-11"></div>
+				<div class="tachometer-scale tachometer-scale-12"></div>
+				<div class="tachometer-scale tachometer-scale-13"></div>
+				<div class="tachometer-scale tachometer-scale-14"></div>
+				<div class="tachometer-scale tachometer-scale-15"></div>
+				<div class="tachometer-scale tachometer-scale-16"></div>
+				<div class="tachometer-scale tachometer-scale-17"></div>
+				<div class="tachometer-scale tachometer-scale-18"></div>
+				<div class="tachometer-scale tachometer-scale-19"></div>
+			</div>
+		</div>
+    </div>
+    <hr>
+    <div>
+        <h2>OBD parameters table</h2>
+        <a href=obd_parameters><button class="btn btn-parameters">OBD Table</button></a>
+    </div>
+    <div>
+        <h2>Main</h2>
+        <a href=\><button class="btn btn-ret">Return</button></a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script type="text/javascript">
+        /*function to set live tachometer parameters on website*/
+        setInterval(function sendGET() {
+            if (document.getElementById("tripAvailable") != null)
+            {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ url_for('trip')}}",
+                    data: {"parameter" : "trip"},
+                    contentType: "application/json",
+                    success: function(response) {
+                        console.log(response);
+                        document.getElementById("tripAvailable").innerText = response.tripValue;
+                    }
+                });
+            }
+            else if(document.getElementById("speedAvailable") != null)
+            {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ url_for('speed')}}",
+                    data: {"parameter" : "speed"},
+                    contentType: "application/json",
+                    success: function(response) {
+                        console.log(response);
+                        document.getElementById("speedAvailable").innerText = response.speedValue;
+                    }
+                });
+            }
+            else if(document.getElementById("tempAvailable") != null)
+            {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ url_for('temperature')}}",
+                    data: {"parameter" : "temperature"},
+                    contentType: "application/json",
+                    success: function(response) {
+                        console.log(response);
+                        document.getElementById("tempAvailable").innerText = response.tempValue;
+                    }
+                });
+            }
+            else if(document.getElementById("rangeAvailable") != null)
+            {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ url_for('range')}}",
+                    data: {"parameter" : "range"},
+                    contentType: "application/json",
+                    success: function(response) {
+                        console.log(response);
+                        document.getElementById("rangeAvailable").innerText = response.rangeValue;
+                    }
+                });
+            }
+            else if(document.getElementById("consAvailable") != null)
+            {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ url_for('consumption')}}",
+                    data: {"parameter" : "consumption"},
+                    contentType: "application/json",
+                    success: function(response) {
+                        console.log(response);
+                        document.getElementById("consAvailable").innerText = response.consValue;
+                    }
+                });
+            }
+        }, 1000);
+        
+        /*function used to update RPM on website*/
+        setInterval(function sendGETRPM() {
+            $.ajax({
+                type: "GET",
+                url: "{{ url_for('rpm')}}",
+                data: {"parameter" : "rpm"},
+                contentType: "application/json",
+                success: function(response) {
+                    console.log(response);
+                    document.getElementById("dynamic_lcd").innerText = response.rpmValue;
+                }
+            });
+            setRPM();
+        }, 1000);   
+        
+        /*functional implementation of moving tachometer arrow*/
+        var engineSpeed = 0;
+        var prevEngineSpeed = 0;
+
+        function setRPM() {
+            engineSpeed = document.getElementById("dynamic_lcd").innerText;
+            engineSpeed = ((engineSpeed/357) | 0) * 10; //bitwise or operator to truncate floating point figures
+            addClass();
+        }
+
+        function addClass() {
+            let newClass = "arrow-speed-" + engineSpeed;
+            let prevClass = "arrow-speed-" + prevEngineSpeed;
+            let el = document.getElementsByClassName("arrow-wrapper")[0];
+            if (el.classList.contains(prevClass)) {
+                el.classList.remove(prevClass);
+                el.classList.add(newClass);
+            }
+            prevEngineSpeed = engineSpeed;
+        }
+    </script>
+{% endblock %}

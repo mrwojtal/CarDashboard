@@ -1,0 +1,437 @@
+* {
+    font-family: sans-serif;
+}
+
+body {
+    height: 100%;
+    background-image: url("../images/highway_background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.row {
+    display: flex;
+}
+
+.column {
+    flex: 50%;
+}
+
+.inner_column_left, 
+.inner_column_right {
+    margin-left: 25px;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    gap: 2%;
+}
+
+#p_par {
+    height: 30px;
+    width: 95px;
+}
+
+.manual_p {
+    font-size: 20px;
+}
+
+.manual_list li {
+    font-size: 20px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.std_paragraph {
+    height: 30px;
+    width: 100px;
+    line-height: 30px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.3);
+    font-weight: bold;
+    border-style: inset;
+    border-color: burlywood;
+}
+
+.btn {
+    cursor: pointer;
+    height: 35px;
+    width: 100px;
+    color: black;
+    background-color: rgba(255, 255, 255, 0.2);
+    font-weight: bold;
+    border-style: solid;
+    border-color: burlywood;
+}
+
+.credentials::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 100%;
+    height: 3px;
+    background-color: black;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+}
+
+.credentials:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+h1 {
+    text-align: center;
+    color: black;
+}
+
+footer {
+    color: lightblue;
+    font-weight: bold;
+    position: relative;
+    bottom: 0;
+}
+
+.styled-table {
+    border-collapse: collapse;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    font-weight: bold;
+    min-width: 400px;
+    background-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+    background-color: #FF5733;
+    color: #ffffff;
+    text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 2px solid #dddddd;
+}
+
+.styled-table tbody tr:{
+    background-color: transparent;
+    border: 2px solid #FF5733;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #FF5733;
+}
+
+.tacho_desc {
+    text-align: center;
+}
+
+.tachometer-container {
+    background-color: silver;
+    width:300px;
+    height: 300px;
+    border: 3px solid black;
+    border-radius: 50%; /*it makes border a circle*/
+    margin: 50px auto; /*display in top center*/
+    position: relative;
+}
+
+.center-point {
+    width: 20px;
+    height:20px;
+    background-color: black;
+    border-radius: 50%;
+    position: absolute;
+    top: 137px;
+    left: 137px;
+    z-index: 10;
+}
+.center-point-2 {
+    width: 12px;
+    height: 12px;
+    background-color: gold;
+    border-radius: 50%;
+    position: absolute;
+    top: 141px;
+    left: 141px;
+    z-index: 13;
+}
+
+.tachometer-scale {
+    width: 8px;
+    height: 280px;
+    background-color: black;
+    position: absolute;
+    left: 143px;
+    top: 7px;
+}
+
+.tachometer-scale-1 {
+    background-color: rgb(255, 102, 0);
+    transform: rotate(-90deg);
+}
+
+.tachometer-scale-2 {
+    transform: rotate(-80deg);
+    height: 250px;
+    position: absolute;
+    left: 129px;
+    top: 18px;
+}
+
+.tachometer-scale-3 {
+    transform: rotate(-70deg);
+    background-color: rgb(255, 102, 0);
+}
+
+.tachometer-scale-4 {
+    transform: rotate(-60deg);
+}
+
+.tachometer-scale-5 {
+    transform: rotate(-50deg);
+}
+
+.tachometer-scale-6 {
+    transform: rotate(-40deg);
+    background-color: rgb(255, 102, 0);
+}
+
+.tachometer-scale-7 {
+    transform: rotate(-30deg);
+}
+
+.tachometer-scale-8 {
+    transform: rotate(-20deg);
+}
+
+.tachometer-scale-9 {
+    transform: rotate(-10deg);
+    background-color: rgb(255, 102, 0);
+}
+
+.tachometer-scale-10 {
+    transform: rotate(10deg);
+}
+
+.tachometer-scale-11 {
+    transform: rotate(20deg);
+}
+
+.tachometer-scale-12 {
+    transform: rotate(30deg);
+    background-color: rgb(255, 102, 0);
+}
+
+.tachometer-scale-13 {
+    transform: rotate(40deg);
+}
+
+.tachometer-scale-14 {
+    transform: rotate(50deg);
+}
+
+.tachometer-scale-15 {
+    transform: rotate(60deg);
+    background-color: red;
+}
+
+.tachometer-scale-16 {
+    transform: rotate(70deg);
+}
+
+.tachometer-scale-17 {
+    transform: rotate(80deg);
+}
+
+.tachometer-scale-18 {
+    transform: rotate(90deg);
+    
+}
+
+.tachometer-scale-19 {
+    transform: rotate(0deg);
+}
+
+.tachometer-center-hide {
+    width: 250px;
+    height: 250px;
+    background-color: silver;
+    border-radius: 50%;
+    position: absolute;
+    top: 22px;
+    left: 22px;
+    z-index: 9;
+}
+
+.tachometer-bottom-hide-left {
+    width: 135px;
+    height: 110px;
+    background-color: silver;
+    border-bottom-left-radius: 100%;
+    position: absolute;
+    top: 177px;
+    left: 12px;
+    z-index: 11;
+}
+
+.tachometer-bottom-hide-right {
+    width: 135px;
+    height: 110px;
+    background-color: silver;
+    border-bottom-right-radius: 100%;
+    position: absolute;
+    top: 177px;
+    left: 147px;
+    z-index: 11;
+}
+
+.arrow-container {
+    width: 160px;
+    height: 160px;
+    background-color: transparent;
+    position: absolute;
+    top: 67px;
+    left: 67px;
+    z-index: 12;
+}
+
+.arrow-wrapper {
+    width: 160px;
+    height: 160px;
+    background-color: transparent;
+    position: relative;
+    transition: all 0.2s;
+}
+
+.arrow {
+    width: 110px;
+    height: 4px;
+    background-color: red;
+    position: absolute;
+    top: 78px;
+    left: -30px;
+    z-index: 14;
+}
+
+.arrow-speed-0 {
+    transform: rotate(-10deg);
+}
+
+.arrow-speed-10 {
+    transform: rotate(0deg);
+}
+
+.arrow-speed-20 {
+    transform: rotate(10deg);
+}
+
+.arrow-speed-30 {
+    transform: rotate(20deg);
+}
+
+.arrow-speed-40 {
+    transform: rotate(30deg);
+}
+
+.arrow-speed-50 {
+    transform: rotate(40deg);
+}
+
+.arrow-speed-60 {
+    transform: rotate(50deg);
+}
+
+.arrow-speed-70 {
+    transform: rotate(60deg);
+}
+
+.arrow-speed-80 {
+    transform: rotate(70deg);
+}
+
+.arrow-speed-90 {
+    transform: rotate(80deg);
+}
+
+.arrow-speed-100 {
+    transform: rotate(90deg);
+}
+
+.arrow-speed-110 {
+    transform: rotate(100deg);
+}
+
+.arrow-speed-120 {
+    transform: rotate(110deg);
+}
+
+.arrow-speed-130 {
+    transform: rotate(120deg);
+}
+
+.arrow-speed-140 {
+    transform: rotate(130deg);
+}
+
+.arrow-speed-150 {
+    transform: rotate(140deg);
+}
+
+.arrow-speed-160 {
+    transform: rotate(150deg);
+}
+
+.arrow-speed-170 {
+    transform: rotate(160deg);
+}
+
+.arrow-speed-180 {
+    transform: rotate(170deg);
+}
+
+.arrow-speed-190 {
+    transform: rotate(180deg);
+}
+
+.arrow-speed-200 {
+    transform: rotate(190deg);
+}
+
+.lcd {
+    width: 120px;
+    height: 60px;
+    position: relative;
+    top: 195px;
+    left: 87px;
+    border: solid;
+    border-radius: 10px;
+    background-color: rgb(255, 102, 0);
+    z-index: 13;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    
+}
+
+.static {
+    font-size: 24px;
+    font-weight: bold;
+    position: absolute;
+    top: 16px;
+    left: 58px;
+}
+
+.dynamic {
+    font-size: 24px;
+    font-weight: bold;
+    position: absolute;
+    top: 16px;
+    left: 4px;
+}

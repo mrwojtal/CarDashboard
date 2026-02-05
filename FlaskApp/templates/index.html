@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Mini R50 Web Panel</title>
+{% endblock %}
+
+{% block body %}
+    <h1>Mini R50 Web Panel</h1>
+    <hr>
+    <div>
+        <h2>Introduction</h2>
+        <h3>Website created to enable controlling LCD display on Mini R50 cluster.</h3>
+    </div>
+    <hr>
+    <div>
+        <h2>Manual</h2>
+        <p class="manual_p">User can control currently displayed values on LCD display after entering to control page, by clicking Control button.
+           On the control page, user can choose one of five parameters to be displayed on the LCD displayed:
+        </p>
+           <ol class = "manual_list">
+           <li><strong>Trip</strong> - distance with MIL indicator ON.</li>
+           <li><strong>Speed</strong> - current speed of the vehicle.</li>
+           <li><strong>Temperaure</strong> - current intake air temperature</li>
+           <li><strong>Range</strong> - expected range, based on the fuel consumption, calculated based on maximum fuel tank capacity.</li>
+           <li><strong>Consumption</strong> - current vehicle fuel consumption.</li>
+           </ol>
+        <p class="manual_p">OBD Patameters table contains OBD responses to certain PID's. User can read current values of various parameters.
+        </p>
+    </div>
+    <hr>
+    <div>
+        <h2>Tachometer control</h2>
+        <a href=\control><button class="btn btn-control">Control</button></a>
+    </div>
+    <div>
+        <h2>OBD Parameters table</h2>
+        <a href=obd_parameters><button class="btn btn-parameters">OBD Table</button></a>
+    </div>
+{% endblock %}
